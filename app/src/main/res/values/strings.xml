@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BasicInformationJusour</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="basic_info">Basic Info</string>
+    <string name="approval">Approval</string>
+    <string name="preference">Preference</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="fill_required_tv">Please fill in the required details</string>
+    <string name="language_prefer">What language do you prefer?</string>
+    <string name="english">English</string>
+    <string name="arab">Arab</string>
+    <string name="both">Both</string>
+    <string name="first_name_tv">First Name <font color='#FF0000'>*</font></string>
+    <string name="last_name_tv">last Name <font color='#FF0000'>*</font></string>
+    <string name="this_field_is_required"><font color='#FF0000' >Nb: This Field is Required</font></string>
+    <string name="basel">Basel</string>
+    <string name="zacharia">Zacharia</string>
+    <string name="dob_tv">Date of Birth</string>
+    <string name="dob_format"><b>DD/MM/YYYY</b></string>
+</resources>

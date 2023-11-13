@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#052460</color>
+    <color name="light_blue">#4256E5</color>
+    <color name="text_blue">#131234</color>
+    <color name="gray">#131234</color>
+    <color name="radio_button">#e5eaee</color>
+    <color name="text_black">#3E3E3E</color>
+    <color name="text_gray">#707070</color>
+    <color name="text_red">#8E1537</color>
+    <color name="error_red">#FF0000</color>
+    <color name="blur_white">#F4F5FF</color>
+    <color name="box_stroke">#CCD5DC</color>
+</resources>
