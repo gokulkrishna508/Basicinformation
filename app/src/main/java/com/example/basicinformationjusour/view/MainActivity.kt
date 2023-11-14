@@ -1,7 +1,8 @@
-package com.example.basicinformationjusour
+package com.example.basicinformationjusour.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.basicinformationjusour.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
