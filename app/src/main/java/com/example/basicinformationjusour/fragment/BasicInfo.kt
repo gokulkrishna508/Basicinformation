@@ -46,9 +46,7 @@ class BasicInfo : Fragment() {
     private var galleryImageUri: Uri? = null
 
 
-    private val launcher = registerForActivityResult(
-        ActivityResultContracts.OpenDocument()
-    ) { uri ->
+    private val launcher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         uri?.let { fileUri ->
             try {
                 val fileName = fileUri.getOriginalFileName(requireContext())
@@ -56,9 +54,31 @@ class BasicInfo : Fragment() {
             }catch (e:Exception){
                 toast("error occurred....")
             }
-
         }
     }
+
+    private val enrollmentLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        uri?.let { fileUri ->
+            try {
+                val fileName = fileUri.getOriginalFileName(requireContext())
+                binding.enrollmentLetterTV.text = fileName
+            }catch (e:Exception){
+                toast("error occurred....")
+            }
+        }
+    }
+
+    private val resumeLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        uri?.let { fileUri ->
+            try {
+                val fileName = fileUri.getOriginalFileName(requireContext())
+                binding.resumeTV.text = fileName
+            }catch (e:Exception){
+                toast("error occurred....")
+            }
+        }
+    }
+
 
     private val galleryPermission =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
@@ -67,6 +87,27 @@ class BasicInfo : Fragment() {
                // pickVisualMediaContract.launch(ActivityResultContracts.GetContent().toString())
 
                 launcher.launch(arrayOf(
+                    "application/pdf"
+                ))
+            }
+        }
+
+    private val enrollmentPdfPermission =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
+        {
+            if (it.values.all { it }) {
+
+                enrollmentLauncher.launch(arrayOf(
+                    "application/pdf"
+                ))
+            }
+        }
+
+    private val resumePdfPermission =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
+        {
+            if (it.values.all { it }) {
+                resumeLauncher.launch(arrayOf(
                     "application/pdf"
                 ))
             }
@@ -267,12 +308,22 @@ class BasicInfo : Fragment() {
                 }.show(childFragmentManager,"SUBJECT")
             }
 
+
+
             nocLetterTV.setOnClickListener(){
                 setUpViews()
             }
 
+            enrollmentLetterTV.setOnClickListener(){
+                setUpEnrollmentViews()
+            }
+
             expectedGraduationTV.setOnClickListener(){
                 expectedGraduationDate()
+            }
+
+            resumeTV.setOnClickListener(){
+                setUpResumeViews()
             }
 
             continueButton.setOnClickListener(){
@@ -453,6 +504,38 @@ class BasicInfo : Fragment() {
         binding.apply {
             nocLetterTV.setOnClickListener {
                 galleryPermission.launch(
+                    if (Build.VERSION.SDK_INT >= 33) {
+                        arrayOf(
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                    } else {
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
+                )
+            }
+        }
+    }
+
+    private fun setUpEnrollmentViews() {
+        binding.apply {
+            enrollmentLetterTV.setOnClickListener {
+                enrollmentPdfPermission.launch(
+                    if (Build.VERSION.SDK_INT >= 33) {
+                        arrayOf(
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                    } else {
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
+                )
+            }
+        }
+    }
+
+    private fun setUpResumeViews() {
+        binding.apply {
+            resumeTV.setOnClickListener {
+                resumePdfPermission.launch(
                     if (Build.VERSION.SDK_INT >= 33) {
                         arrayOf(
                             Manifest.permission.READ_EXTERNAL_STORAGE
