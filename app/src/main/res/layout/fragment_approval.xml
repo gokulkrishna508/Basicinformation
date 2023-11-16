@@ -6,20 +6,168 @@
     android:layout_height="match_parent"
     tools:context=".fragment.Approval">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/iconCLT"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/basicInfoCompletedIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/green_tick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/basic_info"
+            android:textColor="@color/text_green"
+            android:textSize="13sp"
+            android:padding="2dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/basicInfoCompletedIcon"
+            app:layout_constraintStart_toStartOf="@+id/basicInfoCompletedIcon"
+            app:layout_constraintTop_toBottomOf="@+id/basicInfoCompletedIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/line_5571"
+            app:layout_constraintBottom_toBottomOf="@+id/basicInfoCompletedIcon"
+            app:layout_constraintStart_toEndOf="@+id/basicInfoCompletedIcon"
+            app:layout_constraintTop_toTopOf="@+id/basicInfoCompletedIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/approvalIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/circle_svg"
+            app:layout_constraintBottom_toBottomOf="@+id/line"
+            app:layout_constraintStart_toEndOf="@+id/line"
+            app:layout_constraintTop_toTopOf="@+id/line" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/approval"
+            android:textColor="@color/text_gray"
+            android:textSize="13sp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/approvalIcon"
+            app:layout_constraintStart_toStartOf="@+id/approvalIcon"
+            app:layout_constraintTop_toBottomOf="@+id/approvalIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/secondLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/line_5571"
+            app:layout_constraintBottom_toBottomOf="@+id/approvalIcon"
+            app:layout_constraintStart_toEndOf="@+id/approvalIcon"
+            app:layout_constraintTop_toTopOf="@+id/approvalIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/preferenceIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/shade_circle"
+            app:layout_constraintBottom_toBottomOf="@+id/secondLine"
+            app:layout_constraintStart_toEndOf="@+id/secondLine"
+            app:layout_constraintTop_toTopOf="@+id/secondLine" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/preference"
+            android:padding="2dp"
+            android:textColor="@color/text_gray"
+            android:textSize="13sp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/preferenceIcon"
+            app:layout_constraintStart_toStartOf="@+id/preferenceIcon"
+            app:layout_constraintTop_toBottomOf="@+id/preferenceIcon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Button"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/iconCLT">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/completedGreenIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="104dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/completed_tick"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/applicationAcceptedTV"
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="@string/your_application_was_accepted"
+            android:textAlignment="center"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/completedGreenIcon" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="258dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="4dp"
+            android:text="@string/application_accepted_quotes"
+            android:textAlignment="center"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/applicationAcceptedTV" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/approvalContinueButton"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_continue_button"
+        android:text="@string/continue_tv"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

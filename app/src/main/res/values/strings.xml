@@ -11,29 +11,28 @@
     <string name="english">English</string>
     <string name="arab">Arab</string>
     <string name="both">Both</string>
-    <string name="first_name_tv">First Name <font color='#FF0000'>*</font></string>
-    <string name="last_name_tv">last Name <font color='#FF0000'>*</font></string>
-    <string name="this_field_is_required"><font color='#FF0000'>Nb: This Field is Required</font></string>
+    <string name="first_name_tv">First Name <font color='#8E1537'>*</font></string>
+    <string name="last_name_tv">last Name <font color='#8E1537'>*</font></string>
+    <string name="this_field_is_required"><font color='#8E1537'>Nb: This Field is Required</font></string>
     <string name="basel">Basel</string>
     <string name="zacharia">Zacharia</string>
-    <string name="dob_tv">Date of Birth <font color='#FF0000'>*</font></string>
+    <string name="dob_tv">Date of Birth <font color='#8E1537'>*</font></string>
     <string name="select">Select</string>
-    <string name="university_name">University Name <font color='#FF0000'>*</font></string>
-    <string name="university_major">University Major <font color='#FF0000'>*</font></string>
-    <string name="university_start">University Start Date <font color='#FF0000'>*</font></string>
-    <string name="expected_graduation_date">Expected Graduation Date <font color='#FF0000'>*</font></string>
-    <string name="noc_letter_sponsor">NoC letter from the sponsor <font color='#FF0000'>*</font></string>
-    <string name="Letter_of_enrollment">Letter of enrollment <font color='#FF0000'>*</font></string>
-    <string name="local_address">Local Address <font color='#FF0000'>*</font></string>
-    <string name="email_address">Email Address <font color='#FF0000'>*</font></string>
+    <string name="university_name">University Name <font color='#8E1537'>*</font></string>
+    <string name="university_major">University Major <font color='#8E1537'>*</font></string>
+    <string name="university_start">University Start Date <font color='#8E1537'>*</font></string>
+    <string name="expected_graduation_date">Expected Graduation Date <font color='#8E1537'>*</font></string>
+    <string name="noc_letter_sponsor">NoC letter from the sponsor <font color='#8E1537'>*</font></string>
+    <string name="Letter_of_enrollment">Letter of enrollment <font color='#8E1537'>*</font></string>
+    <string name="local_address">Local Address <font color='#8E1537'>*</font></string>
+    <string name="email_address">Email Address <font color='#8E1537'>*</font></string>
     <string name="enter_address">Enter Address</string>
     <string name="dob_format"><b>DD/MM/YYYY</b></string>
-    By clicking on submit, I accept to the Privacy Policy Agreement
     <string name="upload"><b>Upload</b></string>
     <string name="upload_file"><b>Upload File</b></string>
     <string name="privacy_policy_tv">By clicking on submit, I accept to the <font color='#4256E5'><u>Privacy Policy Agreement</u></font></string>
     <string name="already_have_account">Already have an account? <font color='#4256E5'><u>Sign in</u></font></string>
-    <string name="upload_cv">Upload your CV <font color='#FF0000'>*</font></string>
+    <string name="upload_cv">Upload your CV <font color='#8E1537'>*</font></string>
     <string name="phone_number">Phone number</string>
     <string name="continue_tv">Continue</string>
     <string name="above_2_characters">Above 2 Characters Required…</string>
@@ -43,4 +42,33 @@
     <string name="_3317_9639">3317_9639</string>
     <string name="m_g_university">M.G University</string>
     <string name="bachelor_business_administration">Bachelor Business Administration</string>
+    <string name="your_application_was_accepted">Your application was accepted</string>
+    <string name="willing_work_days">When are you looking to work?</string>
+    <string name="application_accepted_quotes">Your job seeker account has been successfully created. Start exploring job opportunities and take the next step towards your dream career</string>
+    <string name="would_like_work_during_academic">Would you like to work during academic term time or during academic holidays? <font color='#8E1537'>*</font></string>
+    <string name="experience_work_academic">What skills have you gained in your experience in work or academia? <font color='#8E1537'>*</font></string>
+    <string name="your_sectors_preferred_employee">What are your preferred sectors to be employed? <font color='#8E1537'>*</font></string>
+    <string name="fully_hybrid_or_not">Are you looking for on-site work, fully remote or hybrid? <font color='#8E1537'>*</font></string>
+    <string name="start_date">Start Date <font color='#8E1537'>*</font></string>
+    <string name="end_date">End Date <font color='#8E1537'>*</font></string>
+    <string name="preferences">Preferences</string>
+    <string name="search_and_add">Search And Add</string>
+    <string name="weekdays">Weekdays</string>
+    <string name="weekend">Weekend</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="location">Location <font color='#8E1537'>*</font></string>
+    <string name="employer">Employer <font color='#8E1537'>*</font></string>
+    <string name="create_account">Create Account</string>
+    <string name="select_the_language">select the Language</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="fully_remote">Fully Remote</string>
+    <string name="partially_remote">Partially Remote</string>
+    <string name="design">Design</string>
+    <string name="technical">Technical</string>
+    <string name="software">Software</string>
+    <string name="other">Other</string>
+    <string name="analytical_skills">Analytical Skills</string>
+    <string name="do_you_have_any_work_experience">Do you have any Work Experience?</string>
+    <string name="submit">Submit</string>
 </resources>

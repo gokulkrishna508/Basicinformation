@@ -20,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.database.getStringOrNull
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.basicinformationjusour.R
 import com.example.basicinformationjusour.databinding.FragmentBasicInfoBinding
 import com.example.basicinformationjusour.fragment.university.UniversityBottomSheet
@@ -96,7 +97,6 @@ class BasicInfo : Fragment() {
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
         {
             if (it.values.all { it }) {
-
                 enrollmentLauncher.launch(arrayOf(
                     "application/pdf"
                 ))
@@ -115,14 +115,13 @@ class BasicInfo : Fragment() {
 
 
 
-
-    private val pickVisualMediaContract = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    /* private val pickVisualMediaContract = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if (uri != null) {
                 val cursor = context?.contentResolver?.query(
                     uri, arrayOf(MediaStore.Images.ImageColumns.MIME_TYPE), null,
                     arrayOf(), null
                 )
-            /*    if (cursor != null && cursor.moveToNext()) {
+               if (cursor != null && cursor.moveToNext()) {
                     val mimeType =
                         cursor.getStringOrNull(cursor.getColumnIndex(MediaStore.Images.ImageColumns.MIME_TYPE))
                     cursor.close()
@@ -152,9 +151,10 @@ class BasicInfo : Fragment() {
                         binding.nocLetterTV.text = uri.lastPathSegment.toString()
 
                     }
-                }*/
+                }
             }
-        }
+        }*/
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -284,7 +284,7 @@ class BasicInfo : Fragment() {
             }
 
             dobTV.setOnClickListener(){
-                datePicker()
+                dobPicker()
             }
 
             universityStartTV.setOnClickListener(){
@@ -308,6 +308,27 @@ class BasicInfo : Fragment() {
                 }.show(childFragmentManager,"SUBJECT")
             }
 
+            nocLetterButton.setOnClickListener(){
+                if (nocLetterTV.text.toString().isNotEmpty()){
+                    toast("Image Updated")
+                }else
+                    toast("Image not updated")
+            }
+
+            enrollmentUploadButton.setOnClickListener(){
+                if (enrollmentLetterTV.text.toString().isNotEmpty()){
+                    toast("Image Updated")
+                }else
+                    toast("Image not updated")
+            }
+
+            resumeUploadButton.setOnClickListener(){
+                if (resumeTV.text.toString().isNotEmpty()){
+                    toast("Image Updated")
+                }else
+                    toast("Image not updated")
+            }
+
 
 
             nocLetterTV.setOnClickListener(){
@@ -326,10 +347,24 @@ class BasicInfo : Fragment() {
                 setUpResumeViews()
             }
 
+
+
+
+
+
+            preferenceIcon.setOnClickListener(){
+                findNavController().navigate(R.id.action_basicInfo_to_preference)
+            }
+
+
+
+
+
             continueButton.setOnClickListener(){
                 validation()
                 if (isValid){
                     Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_basicInfo_to_approval)
                 }else
                     Toast.makeText(context, "UnSuccessful", Toast.LENGTH_SHORT).show()
             }
@@ -459,7 +494,7 @@ class BasicInfo : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun datePicker() {
+    private fun dobPicker() {
         val calendarFragment = context?.let {
             DatePickerDialog(it,
                 { view, year, monthOfYear, dayOfMonth ->

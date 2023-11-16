@@ -1,0 +1,1199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragment.PreferenceFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/iconCLT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/preferenceInfoIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/green_tick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:text="@string/basic_info"
+            android:textColor="@color/text_green"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/preferenceInfoIcon"
+            app:layout_constraintStart_toStartOf="@+id/preferenceInfoIcon"
+            app:layout_constraintTop_toBottomOf="@+id/preferenceInfoIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/line_5571"
+            app:layout_constraintBottom_toBottomOf="@+id/preferenceInfoIcon"
+            app:layout_constraintStart_toEndOf="@+id/preferenceInfoIcon"
+            app:layout_constraintTop_toTopOf="@+id/preferenceInfoIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/approvalIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/green_tick"
+            app:layout_constraintBottom_toBottomOf="@+id/line"
+            app:layout_constraintStart_toEndOf="@+id/line"
+            app:layout_constraintTop_toTopOf="@+id/line" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:text="@string/approval"
+            android:textColor="@color/text_green"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/approvalIcon"
+            app:layout_constraintStart_toStartOf="@+id/approvalIcon"
+            app:layout_constraintTop_toBottomOf="@+id/approvalIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/secondLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/line_5571"
+            app:layout_constraintBottom_toBottomOf="@+id/approvalIcon"
+            app:layout_constraintStart_toEndOf="@+id/approvalIcon"
+            app:layout_constraintTop_toTopOf="@+id/approvalIcon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/preferenceIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/circle_svg"
+            app:layout_constraintBottom_toBottomOf="@+id/secondLine"
+            app:layout_constraintStart_toEndOf="@+id/secondLine"
+            app:layout_constraintTop_toTopOf="@+id/secondLine" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:text="@string/preference"
+            android:textColor="@color/text_blue"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/preferenceIcon"
+            app:layout_constraintStart_toStartOf="@+id/preferenceIcon"
+            app:layout_constraintTop_toBottomOf="@+id/preferenceIcon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/subCLT"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconCLT">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iconCLT">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/preferenceTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="2dp"
+                    android:text="@string/preferences"
+                    android:textColor="@color/text_blue"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/requiredTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="2dp"
+                    android:text="@string/fill_required_tv"
+                    android:textColor="@color/text_black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/preferenceTV" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/languagePreferTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="2dp"
+                    android:text="@string/language_prefer"
+                    android:textColor="@color/text_black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/requiredTV" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/preferenceEnglishButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/tick"
+                    android:padding="4dp"
+                    android:text="@string/english"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/languagePreferTV" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/preferenceEnglishUnTickButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/radio_border"
+                    android:padding="4dp"
+                    android:text="@string/english"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/languagePreferTV" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/preferenceArabButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/radio_border"
+                    android:padding="4dp"
+                    android:text="@string/arab"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/preferenceEnglishButton"
+                    app:layout_constraintStart_toEndOf="@+id/preferenceEnglishButton"
+                    app:layout_constraintTop_toTopOf="@+id/preferenceEnglishButton" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/preferenceArabBlueTickButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/tick"
+                    android:padding="4dp"
+                    android:text="@string/arab"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/preferenceEnglishButton"
+                    app:layout_constraintStart_toEndOf="@+id/preferenceEnglishButton"
+                    app:layout_constraintTop_toTopOf="@+id/preferenceEnglishButton" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/preferenceBothButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/radio_border"
+                    android:padding="4dp"
+                    android:text="@string/both"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/preferenceArabButton"
+                    app:layout_constraintStart_toEndOf="@+id/preferenceArabButton"
+                    app:layout_constraintTop_toTopOf="@+id/preferenceArabButton" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/preferenceBothBlueTickButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/tick"
+                    android:padding="4dp"
+                    android:text="@string/both"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/preferenceArabButton"
+                    app:layout_constraintStart_toEndOf="@+id/preferenceArabButton"
+                    app:layout_constraintTop_toTopOf="@+id/preferenceArabButton" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/languagePreferCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/preferenceBothBlueTickButton">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/languagePreferView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/language_prefer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/languagePreferLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/languagePreferView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/languagePreferBoxTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select"
+                            android:padding="5dp"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/languagePreferSV"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/languagePreferEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/languagePreferLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/academicWorkCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/languagePreferCLT">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/academicWorkView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/would_like_work_during_academic"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/academicWorkSubLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/academicWorkView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/academicWorkTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select"
+                            android:padding="5dp"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/academicWorkSV"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/academicWorkEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/academicWorkSubLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/workDaysTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:padding="2dp"
+                    android:text="@string/willing_work_days"
+                    android:textColor="@color/text_black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/academicWorkCLT" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/weekDayButton"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/tick"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/weekdays"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/workDaysTV" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/weekDayUnTickButton"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/radio_border"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/weekdays"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/workDaysTV" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/weekEndButton"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/radio_border"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/weekend"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/weekDayButton"
+                    app:layout_constraintStart_toEndOf="@+id/weekDayButton"
+                    app:layout_constraintTop_toTopOf="@+id/weekDayButton" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/weekEndBlueTickButton"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/tick"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/weekend"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/weekDayButton"
+                    app:layout_constraintStart_toEndOf="@+id/weekDayButton"
+                    app:layout_constraintTop_toTopOf="@+id/weekDayButton" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/remoteOrHybridCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/weekDayButton">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/remoteOrHybridView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/fully_hybrid_or_not"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/remoteOrHybridSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/remoteOrHybridView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/remoteOrHybridTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select"
+                            android:padding="5dp"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/remoteOrHybridSV"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/remoteOrHybridEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/remoteOrHybridSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/experienceInWorkCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/remoteOrHybridCLT">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/experienceInWorkView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/experience_work_academic"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/experienceInWorkSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/experienceInWorkView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/experienceInWorkTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/search_and_add"
+                            android:padding="5dp"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/experienceInWorkSV"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/experienceInWorkEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/experienceInWorkSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/experienceRVCL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/experienceInWorkCLT">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/experienceWorkRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:itemCount="5"
+                        app:spanCount="3"
+                        tools:listitem="@layout/cell_skill_experience_bottom_sheet"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/dobCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/experienceRVCL">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dobView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/dob_tv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/dobSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dobView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/dobTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/dob_format"
+                            android:textColorHint="@color/text_gray"
+                            android:padding="5dp"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/dobCalendar"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/calendar"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dobEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dobSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/employerPreferredSectorCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dobCLT">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/employerPreferredSectorView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/your_sectors_preferred_employee"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/employerPreferredSectorSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/employerPreferredSectorView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/employerPreferredSectorTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select"
+                            android:padding="5dp"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/employerPreferredSectorSV"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/employerPreferredSectorEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/employerPreferredSectorSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/haveWorkExperienceTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:padding="2dp"
+                    android:text="@string/do_you_have_any_work_experience"
+                    android:textColor="@color/text_black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/employerPreferredSectorCLT" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/yesButton"
+                    android:layout_width="81dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/tick"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/yes"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/haveWorkExperienceTV" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/yesUnTickButton"
+                    android:layout_width="81dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/radio_border"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/yes"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/haveWorkExperienceTV" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/noButton"
+                    android:layout_width="81dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/radio_border"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/no"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/yesButton"
+                    app:layout_constraintStart_toEndOf="@+id/yesButton"
+                    app:layout_constraintTop_toTopOf="@+id/yesButton" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/noBlueTickButton"
+                    android:layout_width="81dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_border"
+                    android:drawableStart="@drawable/tick"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/no"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/yesButton"
+                    app:layout_constraintStart_toEndOf="@+id/yesButton"
+                    app:layout_constraintTop_toTopOf="@+id/yesButton" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/employerCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/yesButton">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/employerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/employer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/employerSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/employerView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/employerTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select"
+                            android:padding="5dp"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/employerSV"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/employerEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/employerSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/locationCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/employerCLT">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/locationView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/location"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/locationSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/locationView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/locationTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select"
+                            android:padding="5dp"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/locationSV"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/locationEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/locationSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/startDateCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/locationCLT">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/startDateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/start_date"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/startDateSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/startDateView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/startDateTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/dob_format"
+                            android:textColorHint="@color/text_gray"
+                            android:padding="5dp"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/startDateCalendar"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/calendar"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/startDateEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/startDateSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/endDateCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/privacyPolicyCLT"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/startDateCLT">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/endDateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/end_date"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/endDateSubCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/text_box_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/endDateView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/endDateTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/dob_format"
+                            android:textColorHint="@color/text_gray"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/endDateCalendar"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/calendar"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/endDateEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/this_field_is_required"
+                        android:textColor="@color/error_red"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/endDateSubCLT" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/privacyPolicyCLT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/endDateCLT">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/privacyPolicyTick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/square_tick"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/privacyPolicyUnTick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/square_untick"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/privacyPolicyTV"
+                        android:layout_width="300dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:padding="3dp"
+                        android:text="@string/privacy_policy_tv"
+                        android:textAlignment="viewStart"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/privacyPolicyTick"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/createButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/continue_button_border"
+                        android:text="@string/create_account"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/privacyPolicyTV" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
