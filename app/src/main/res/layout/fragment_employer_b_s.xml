@@ -8,12 +8,12 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/selectTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/select"
-        android:textColor="@color/text_red"
-        android:textSize="27sp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,8 +26,7 @@
         android:layout_margin="10dp"
         android:text="@string/yes"
         android:textColor="@color/blue"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectTv"/>
 
@@ -38,9 +37,8 @@
         android:layout_margin="10dp"
         android:text="@string/no"
         android:textColor="@color/blue"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yesButton" />
 

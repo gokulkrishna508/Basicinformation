@@ -9,9 +9,7 @@ import com.example.basicinformationjusour.R
 import com.example.basicinformationjusour.databinding.CellSkillExperienceBottomSheetBinding
 import com.example.basicinformationjusour.model.SkillExperienceData
 
-class SkillExperienceAdapter(
-     val skillExperienceList: MutableList<SkillExperienceData>,
-): RecyclerView.Adapter<SkillExperienceAdapter.ViewHolder>() {
+class SkillExperienceAdapter(val skillExperienceList: MutableList<SkillExperienceData> ): RecyclerView.Adapter<SkillExperienceAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view=CellSkillExperienceBottomSheetBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -53,7 +51,7 @@ class SkillExperienceAdapter(
 
 }
 
-fun View.click(action:()->Unit){
+fun View.click(action: ()->Unit){
     this.setOnClickListener{
         action.invoke()
     }

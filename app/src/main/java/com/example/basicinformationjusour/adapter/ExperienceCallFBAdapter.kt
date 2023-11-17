@@ -1,5 +1,6 @@
 package com.example.basicinformationjusour.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,6 @@ class ExperienceCallFBAdapter : RecyclerView.Adapter<ExperienceCallFBAdapter.Vie
 
             imgClose.click {
                 try {
-
                     //should be learn .....
                     list.removeAt(position)
                     notifyItemRemoved(position)

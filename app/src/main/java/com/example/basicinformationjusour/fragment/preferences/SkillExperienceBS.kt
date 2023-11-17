@@ -15,8 +15,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class SkillExperienceBS : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentSkillExperienceBSBinding
-    var skillsCallBack: ((list:MutableList<SkillExperienceData>)-> Unit)?= null
     private lateinit var adapter:SkillExperienceAdapter
+    var skillsCallBack: ((list:MutableList<SkillExperienceData>)-> Unit)?= null
     var skills = mutableListOf<String>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -41,7 +41,6 @@ class SkillExperienceBS : BottomSheetDialogFragment() {
                 skillsCallBack?.invoke(adapter.skillExperienceList)
                 dismiss()
             }
-
         }
     }
 

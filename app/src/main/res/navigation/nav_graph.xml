@@ -21,10 +21,23 @@
         android:id="@+id/approval"
         android:name="com.example.basicinformationjusour.fragment.Approval"
         android:label="fragment_approval"
-        tools:layout="@layout/fragment_approval" />
+        tools:layout="@layout/fragment_approval" >
+        <action
+            android:id="@+id/action_approval_to_preference"
+            app:destination="@id/preference" />
+    </fragment>
     <fragment
         android:id="@+id/preference"
         android:name="com.example.basicinformationjusour.fragment.PreferenceFragment"
         android:label="fragment_preference"
-        tools:layout="@layout/fragment_preference" />
+        tools:layout="@layout/fragment_preference" >
+        <action
+            android:id="@+id/action_preference_to_startExploringFragment"
+            app:destination="@id/startExploringFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startExploringFragment"
+        android:name="com.example.basicinformationjusour.fragment.StartExploringFragment"
+        android:label="fragment_start_exploring"
+        tools:layout="@layout/fragment_start_exploring" />
 </navigation>

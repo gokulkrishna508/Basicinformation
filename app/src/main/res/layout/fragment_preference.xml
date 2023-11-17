@@ -1000,6 +1000,28 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/locationRVConstrainLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/locationCLT">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/locationRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:itemCount="5"
+                        app:spanCount="3"
+                        tools:listitem="@layout/cell_location_layout_rv" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/startDateCLT"
                     android:layout_width="match_parent"
@@ -1007,7 +1029,7 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/locationCLT">
+                    app:layout_constraintTop_toBottomOf="@+id/locationRVConstrainLayout">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/startDateView"

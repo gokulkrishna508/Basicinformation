@@ -71,4 +71,9 @@
     <string name="analytical_skills">Analytical Skills</string>
     <string name="do_you_have_any_work_experience">Do you have any Work Experience?</string>
     <string name="submit">Submit</string>
+    <string name="qatar">Qatar</string>
+    <string name="select_your_location">Select Your Location</string>
+    <string name="account_created_successfully">Account created successfully!</string>
+    <string name="your_account_has_been_created_and_now_you_can_start_the_journey_to_find_your_job">Your account has been created and now you can start the journey to find your job</string>
+    <string name="start_exploring">Start Exploring</string>
 </resources>

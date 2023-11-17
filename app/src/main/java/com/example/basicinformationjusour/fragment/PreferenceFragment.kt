@@ -7,16 +7,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.basicinformationjusour.R
 import com.example.basicinformationjusour.adapter.ExperienceCallFBAdapter
+import com.example.basicinformationjusour.adapter.LocationFlexBoxAdapter
 import com.example.basicinformationjusour.databinding.FragmentPreferenceBinding
 import com.example.basicinformationjusour.fragment.preferences.AcademicOrHolidayTime
 import com.example.basicinformationjusour.fragment.preferences.EmployerBS
 import com.example.basicinformationjusour.fragment.preferences.HybridOrRemoteBS
 import com.example.basicinformationjusour.fragment.preferences.LanguageBS
+import com.example.basicinformationjusour.fragment.preferences.LocationBS
 import com.example.basicinformationjusour.fragment.preferences.PreferredSectorEmployedBS
 import com.example.basicinformationjusour.fragment.preferences.SkillExperienceBS
-import com.example.basicinformationjusour.model.SkillExperienceData
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -33,14 +38,14 @@ class PreferenceFragment : Fragment() {
     private val currentMonth: Int = now.get(Calendar.MONTH)
     private val currentDay: Int = now.get(Calendar.DAY_OF_MONTH)
 
-    lateinit var ESList: MutableList<SkillExperienceData>
     private lateinit var adapter:ExperienceCallFBAdapter
+    private lateinit var locationRVAdapter: LocationFlexBoxAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding= FragmentPreferenceBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,26 +53,35 @@ class PreferenceFragment : Fragment() {
 
         binding.apply {
 
-//            yesButton.setOnClickListener {
-//                flag=!flag
-//                if(flag){
-//                    noBlueTickButton.visibility=View.INVISIBLE
-//                }else
-//                    noButton.visibility=View.VISIBLE
-//
-//            }
+/*            yesButton.setOnClickListener {
+                flag=!flag
+                if(flag){
+                    noBlueTickButton.visibility=View.INVISIBLE
+                }else
+                    noButton.visibility=View.VISIBLE
+
+            }*/
 
             val layoutManager = FlexboxLayoutManager(requireContext())
             layoutManager.flexWrap = FlexWrap.WRAP
             layoutManager.flexDirection = FlexDirection.ROW
             layoutManager.justifyContent = JustifyContent.FLEX_START
             layoutManager.alignItems = AlignItems.FLEX_START
+
             experienceWorkRV.layoutManager = layoutManager
-
-
             adapter = ExperienceCallFBAdapter()
-         //   experienceWorkRV.layoutManager=FlexboxLayoutManager(context,FlexDirection.ROW,FlexWrap.WRAP)
             experienceWorkRV.adapter= adapter
+
+
+            val layoutManager2 = FlexboxLayoutManager(requireContext())
+            layoutManager2.flexWrap = FlexWrap.WRAP
+            layoutManager2.flexDirection = FlexDirection.ROW
+            layoutManager2.justifyContent = JustifyContent.FLEX_START
+            layoutManager2.alignItems = AlignItems.FLEX_START
+
+            locationRV.layoutManager=layoutManager2
+            locationRVAdapter= LocationFlexBoxAdapter()
+            locationRV.adapter=locationRVAdapter
 
             noButton.setOnClickListener {
                 flag=!flag
@@ -101,9 +115,7 @@ class PreferenceFragment : Fragment() {
 //            }
 
 
-
-
-            languagePreferBoxTV.setOnClickListener{
+            languagePreferLT.setOnClickListener{
                 LanguageBS().apply {
                     languageCallBack={
                         languagePreferBoxTV.text=it.language
@@ -123,7 +135,7 @@ class PreferenceFragment : Fragment() {
                 endDate()
             }
 
-            academicWorkTV.setOnClickListener{
+            academicWorkCLT.setOnClickListener{
                 AcademicOrHolidayTime().apply {
                     academicCallBack={
                         academicWorkTV.text=it
@@ -131,7 +143,7 @@ class PreferenceFragment : Fragment() {
                 }.show(childFragmentManager,"ACADEMIC")
             }
 
-            remoteOrHybridTV.setOnClickListener{
+            remoteOrHybridSubCLT.setOnClickListener{
                 HybridOrRemoteBS().apply {
                     workCallBack={
                         remoteOrHybridTV.text=it
@@ -139,7 +151,7 @@ class PreferenceFragment : Fragment() {
                 }.show(childFragmentManager,"HYBRID")
             }
 
-            employerPreferredSectorTV.setOnClickListener{
+            employerPreferredSectorCLT.setOnClickListener{
                 PreferredSectorEmployedBS().apply {
                     sectorCallBack={
                         employerPreferredSectorTV.text=it
@@ -147,7 +159,7 @@ class PreferenceFragment : Fragment() {
                 }.show(childFragmentManager,"SECTOR")
             }
 
-            employerTV.setOnClickListener{
+            employerCLT.setOnClickListener{
                 EmployerBS().apply {
                     employerCallBack={
                         employerTV.text=it
@@ -155,19 +167,19 @@ class PreferenceFragment : Fragment() {
                 }.show(childFragmentManager,"EMPLOYER")
             }
 
-            locationTV.setOnClickListener{
-//                LocationBS().apply {
-//                    locationCallBack={
-//                        locationTV.text=it.location
-//                    }
-//                }.show(childFragmentManager,"LOCATION")
 
-              /*  try {
-                    experienceRV()
-                }catch (e: Exception){
 
-                }*/
+            locationSubCLT.setOnClickListener{
+                LocationBS().apply {
+                    locationCallBack={
+                        locationRVAdapter.list=it.filter { it.isSelected }.toMutableList()
+                        locationRVAdapter.notifyDataSetChanged()
+                    }
 
+                    selectedList=locationRVAdapter.list.filter { it.isSelected }.map {
+                        it.location
+                    }.toMutableList()
+                }.show(childFragmentManager,"LOCATION")
             }
 
             experienceInWorkSubCLT.setOnClickListener{
@@ -183,17 +195,99 @@ class PreferenceFragment : Fragment() {
                 }.show(childFragmentManager,"SKILL")
             }
 
+            languagePreferBoxTV.doOnTextChanged { _, _, _, _ ->
+                languagePreferEL.visibility=View.INVISIBLE
+            }
+
+            academicWorkTV.doOnTextChanged { _, _, _, _ ->
+                academicWorkEL.visibility=View.INVISIBLE
+            }
+
+            remoteOrHybridTV.doOnTextChanged { _, _, _, _ ->
+                remoteOrHybridEL.visibility=View.INVISIBLE
+            }
+
+            dobTV.doOnTextChanged { _, _, _, _ ->
+                dobEL.visibility=View.INVISIBLE
+            }
+
+            employerPreferredSectorTV.doOnTextChanged { _, _, _, _ ->
+                employerPreferredSectorEL.visibility=View.INVISIBLE
+            }
+
+            employerTV.doOnTextChanged { _, _, _, _ ->
+                employerEL.visibility=View.INVISIBLE
+            }
+
+            startDateTV.doOnTextChanged { _, _, _, _ ->
+                startDateEL.visibility=View.INVISIBLE
+            }
+
+            endDateTV.doOnTextChanged { _, _, _, _ ->
+                endDateEL.visibility=View.INVISIBLE
+            }
 
 
-
-
+            createButton.setOnClickListener{
+                validation()
+                if (isValid){
+                    Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_preference_to_startExploringFragment)
+                }else
+                    Toast.makeText(context, "UnSuccessful", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
 
 
 
+private fun validation(){
+    isValid=true
 
+    binding.apply {
+        if (languagePreferBoxTV.text.toString().trim().isEmpty()){
+            languagePreferEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (academicWorkTV.text.toString().trim().isEmpty()){
+            academicWorkEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (remoteOrHybridTV.text.toString().trim().isEmpty()){
+            remoteOrHybridEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (dobTV.text.toString().trim().isEmpty()){
+            dobEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (employerPreferredSectorTV.text.toString().trim().isEmpty()){
+            employerPreferredSectorEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (employerTV.text.toString().trim().isEmpty()){
+            employerEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (startDateTV.text.toString().trim().isEmpty()){
+            startDateEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (endDateTV.text.toString().trim().isEmpty()){
+            endDateEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+    }
+}
 
 
     @SuppressLint("SetTextI18n")
