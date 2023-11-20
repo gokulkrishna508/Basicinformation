@@ -17,6 +17,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.database.getStringOrNull
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -36,15 +39,16 @@ private val DOCUMENT_TYPE_MIME_TO_EXTENSION_MAP = mapOf(
 class BasicInfo : Fragment() {
     private lateinit var binding: FragmentBasicInfoBinding
     private var isValid=true
+     var count=0
     private val now = Calendar.getInstance()
     private val currentYear: Int = now.get(Calendar.YEAR)
     private val currentMonth: Int = now.get(Calendar.MONTH)
     private val currentDay: Int = now.get(Calendar.DAY_OF_MONTH)
 
-    private var cameraImageFile: File? = null
+   /* private var cameraImageFile: File? = null
     private var cameraImageUri: Uri? = null
     private var galleryImageFile: File? = null
-    private var galleryImageUri: Uri? = null
+    private var galleryImageUri: Uri? = null*/
 
 
     private val launcher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
@@ -167,35 +171,8 @@ class BasicInfo : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            englishButton.setOnClickListener(){
-                englishUnTickButton.visibility=View.VISIBLE
-                englishButton.visibility=View.INVISIBLE
-            }
 
-            englishUnTickButton.setOnClickListener(){
-                englishUnTickButton.visibility=View.INVISIBLE
-                englishButton.visibility=View.VISIBLE
-            }
 
-            arabButton.setOnClickListener(){
-                arabBlueTickButton.visibility=View.VISIBLE
-                arabButton.visibility=View.INVISIBLE
-            }
-
-            arabBlueTickButton.setOnClickListener(){
-                arabBlueTickButton.visibility=View.INVISIBLE
-                arabButton.visibility=View.VISIBLE
-            }
-
-            bothButton.setOnClickListener(){
-                bothBlueTickButton.visibility=View.VISIBLE
-                bothButton.visibility=View.INVISIBLE
-            }
-
-            bothBlueTickButton.setOnClickListener(){
-                bothBlueTickButton.visibility=View.INVISIBLE
-                bothButton.visibility=View.VISIBLE
-            }
 
             privacyPolicyTick.setOnClickListener(){
                 privacyPolicyUnTick.visibility=View.VISIBLE
@@ -356,6 +333,20 @@ class BasicInfo : Fragment() {
                 findNavController().navigate(R.id.action_basicInfo_to_preference)
             }
 
+            englishSubCLT.setOnClickListener {
+                count=1
+                changeLanguageButton(count, englishIconView, arabIconView,bothIconView,englishSubCLT,arabSubCLT,bothSubCLT)
+            }
+
+            arabSubCLT.setOnClickListener {
+                count=2
+                changeLanguageButton(count, arabIconView, englishIconView,bothIconView,arabSubCLT,englishSubCLT,bothSubCLT)
+            }
+
+            bothSubCLT.setOnClickListener {
+                count=3
+                changeLanguageButton(count, bothIconView, englishIconView,arabIconView,bothSubCLT,englishSubCLT,arabSubCLT)
+            }
 
 
 
@@ -369,10 +360,23 @@ class BasicInfo : Fragment() {
                     Toast.makeText(context, "UnSuccessful", Toast.LENGTH_SHORT).show()
             }
 
-
         }
     }
 
+   private fun changeLanguageButton(index: Int, icon: AppCompatImageView, unSelectedIcon: AppCompatImageView, thirdUnSelectedIcon: AppCompatImageView,
+                             background: ConstraintLayout, unSelectBackground: ConstraintLayout, thirdUnselectedBackground: ConstraintLayout) {
+        when(index) {
+            index -> {
+                icon.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.tick) })
+                background.setBackgroundResource(R.drawable.button_border)
+                unSelectedIcon.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.radio_border) })
+                unSelectBackground.setBackgroundResource(R.drawable.un_click_button_border)
+                thirdUnSelectedIcon.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.radio_border) })
+                thirdUnselectedBackground.setBackgroundResource(R.drawable.un_click_button_border)
+            }
+
+        }
+    }
 
     private fun validation(){
         isValid=true
@@ -456,7 +460,7 @@ class BasicInfo : Fragment() {
                 isValid=false
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(emailET.text.toString().trim()).matches()) {
+            else if (!Patterns.EMAIL_ADDRESS.matcher(emailET.text.toString().trim()).matches()) {
                 emailEL.text = resources.getString(R.string.invalid_email)
                 emailEL.visibility = View.VISIBLE
                 isValid=false

@@ -137,16 +137,18 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/preferenceTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:padding="2dp"
+                    android:textAlignment="viewStart"
                     android:text="@string/preferences"
                     android:textColor="@color/text_blue"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -175,110 +177,125 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/requiredTV" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/preferenceEnglishButton"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/languageButtonSelectCLT"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/tick"
-                    android:padding="4dp"
-                    android:text="@string/english"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/languagePreferTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/languagePreferTV">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/preferenceEnglishUnTickButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/radio_border"
-                    android:padding="4dp"
-                    android:text="@string/english"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/languagePreferTV" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/englishSubCLT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/un_click_button_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/preferenceArabButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/radio_border"
-                    android:padding="4dp"
-                    android:text="@string/arab"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/preferenceEnglishButton"
-                    app:layout_constraintStart_toEndOf="@+id/preferenceEnglishButton"
-                    app:layout_constraintTop_toTopOf="@+id/preferenceEnglishButton" />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/englishIconView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/radio_border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/englishTV"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/preferenceArabBlueTickButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/tick"
-                    android:padding="4dp"
-                    android:text="@string/arab"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/preferenceEnglishButton"
-                    app:layout_constraintStart_toEndOf="@+id/preferenceEnglishButton"
-                    app:layout_constraintTop_toTopOf="@+id/preferenceEnglishButton" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/englishTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="@string/english"
+                            android:textColor="@color/blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/preferenceBothButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/radio_border"
-                    android:padding="4dp"
-                    android:text="@string/both"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/preferenceArabButton"
-                    app:layout_constraintStart_toEndOf="@+id/preferenceArabButton"
-                    app:layout_constraintTop_toTopOf="@+id/preferenceArabButton" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/preferenceBothBlueTickButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/tick"
-                    android:padding="4dp"
-                    android:text="@string/both"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/preferenceArabButton"
-                    app:layout_constraintStart_toEndOf="@+id/preferenceArabButton"
-                    app:layout_constraintTop_toTopOf="@+id/preferenceArabButton" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/arabSubCLT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/un_click_button_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/englishSubCLT"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/arabIconView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/radio_border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/arabTV"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/arabTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="@string/arab"
+                            android:textColor="@color/blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/bothSubCLT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/un_click_button_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/arabSubCLT"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/bothIconView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/radio_border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/bothTV"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/bothTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="@string/both"
+                            android:textColor="@color/blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/languagePreferCLT"
@@ -287,7 +304,7 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/preferenceBothBlueTickButton">
+                    app:layout_constraintTop_toBottomOf="@+id/languageButtonSelectCLT">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/languagePreferView"
@@ -321,8 +338,8 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/languagePreferSV"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/spinner"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -404,106 +421,116 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/workDaysTV"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/weekWorkCLT"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:padding="2dp"
-                    android:text="@string/willing_work_days"
-                    android:textColor="@color/text_black"
-                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/academicWorkCLT" />
+                    app:layout_constraintTop_toBottomOf="@+id/academicWorkCLT">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/weekDayButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/tick"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/weekdays"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/workDaysTV" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/weekDayUnTickButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/radio_border"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/weekdays"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/workDaysTV" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/workDaysTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="@string/willing_work_days"
+                        android:textColor="@color/text_black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/weekEndButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/radio_border"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/weekend"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/weekDayButton"
-                    app:layout_constraintStart_toEndOf="@+id/weekDayButton"
-                    app:layout_constraintTop_toTopOf="@+id/weekDayButton" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/weekButtonSelectCLT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/workDaysTV">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/weekEndBlueTickButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/tick"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/weekend"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/weekDayButton"
-                    app:layout_constraintStart_toEndOf="@+id/weekDayButton"
-                    app:layout_constraintTop_toTopOf="@+id/weekDayButton" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/weekdaySubCLT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/un_click_button_border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/weekDayIconView"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@drawable/radio_border"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/weekdayTV"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/weekdayTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:text="@string/weekdays"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/weekEndSubCLT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_marginStart="40dp"
+                            android:background="@drawable/un_click_button_border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/weekdaySubCLT"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/weekEndIconView"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@drawable/radio_border"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/weekEndTV"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/weekEndTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:text="@string/weekend"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/remoteOrHybridCLT"
@@ -512,7 +539,7 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/weekDayButton">
+                    app:layout_constraintTop_toBottomOf="@+id/weekWorkCLT">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/remoteOrHybridView"
@@ -788,93 +815,91 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/employerPreferredSectorCLT" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yesButton"
-                    android:layout_width="81dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/yesButtonCLT"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/tick"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/yes"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/haveWorkExperienceTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/haveWorkExperienceTV">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yesUnTickButton"
-                    android:layout_width="81dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/radio_border"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/yes"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/haveWorkExperienceTV" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/noButton"
-                    android:layout_width="81dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/radio_border"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/no"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/yesButton"
-                    app:layout_constraintStart_toEndOf="@+id/yesButton"
-                    app:layout_constraintTop_toTopOf="@+id/yesButton" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/yesButtonSubCLT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/un_click_button_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/noBlueTickButton"
-                    android:layout_width="81dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/button_border"
-                    android:drawableStart="@drawable/tick"
-                    android:paddingHorizontal="12dp"
-                    android:paddingTop="11dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/no"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/yesButton"
-                    app:layout_constraintStart_toEndOf="@+id/yesButton"
-                    app:layout_constraintTop_toTopOf="@+id/yesButton" />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/yesButtonIconView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/radio_border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/yesButtonTV"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/yesButtonTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/yes"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/noButtonSubCLT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@drawable/un_click_button_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/yesButtonSubCLT"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/noButtonIconView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/radio_border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/noButtonTV"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/noButtonTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/no"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/employerCLT"
@@ -883,7 +908,7 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/yesButton">
+                    app:layout_constraintTop_toBottomOf="@+id/yesButtonCLT">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/employerView"
@@ -1166,17 +1191,6 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/square_tick"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/privacyPolicyUnTick"
-                        android:layout_width="wrap_content"
-                        android:layout_height="18dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/square_untick"
-                        android:visibility="invisible"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

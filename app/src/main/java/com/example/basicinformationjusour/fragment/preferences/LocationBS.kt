@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basicinformationjusour.adapter.LocationAdapter
 import com.example.basicinformationjusour.adapter.click
 import com.example.basicinformationjusour.databinding.FragmentLocationBSBinding
+import com.example.basicinformationjusour.fragment.PreferenceFragment
 import com.example.basicinformationjusour.model.LocationData
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -31,20 +32,27 @@ class LocationBS : BottomSheetDialogFragment() {
 
     private fun locationRV(){
         binding.apply {
-            val list=locationList()
-            list.map { it.isSelected = selectedList.contains(it.location) }
+            PreferenceFragment().apply {
+                toLocationCallBack = {
+                    //val list = it
+                    Log.e("getDatas", "$it" )
+                    adapter = LocationAdapter(it)
+                    locationRV.adapter = adapter
+                }
+            }
 
-            adapter= LocationAdapter(list)
-            locationRV.adapter=adapter
+//                list.map { it.isSelected = selectedList.contains(it.location) }
 
-            locationSubmit.click {
-                locationCallBack?.invoke(adapter.locationList)
-                dismiss()
+
+
+                locationSubmit.click {
+                    locationCallBack?.invoke(adapter.locationList)
+                    dismiss()
             }
         }
     }
 
-    private fun locationList(): MutableList<LocationData>{
+    /*private fun locationList(): MutableList<LocationData>{
         return arrayListOf(
             LocationData("Armenia"),
             LocationData("India"),
@@ -53,5 +61,5 @@ class LocationBS : BottomSheetDialogFragment() {
             LocationData("Mumbai"),
             LocationData("Punjab")
         )
-    }
+    }*/
 }

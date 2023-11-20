@@ -3,13 +3,19 @@ package com.example.basicinformationjusour.fragment
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.support.v4.os.IResultReceiver._Parcel
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.basicinformationjusour.R
 import com.example.basicinformationjusour.adapter.ExperienceCallFBAdapter
@@ -22,6 +28,7 @@ import com.example.basicinformationjusour.fragment.preferences.LanguageBS
 import com.example.basicinformationjusour.fragment.preferences.LocationBS
 import com.example.basicinformationjusour.fragment.preferences.PreferredSectorEmployedBS
 import com.example.basicinformationjusour.fragment.preferences.SkillExperienceBS
+import com.example.basicinformationjusour.model.LocationData
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -29,14 +36,19 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import java.util.Calendar
 
+
+const val TAG = "PreferenceFragment"
 class PreferenceFragment : Fragment() {
     private lateinit var binding: FragmentPreferenceBinding
     private var isValid=true
     var flag= false
+    var count=1
     private val now = Calendar.getInstance()
     private val currentYear: Int = now.get(Calendar.YEAR)
     private val currentMonth: Int = now.get(Calendar.MONTH)
     private val currentDay: Int = now.get(Calendar.DAY_OF_MONTH)
+    var locationList= mutableListOf<LocationData>()
+    var toLocationCallBack: ((list: MutableList<LocationData>)-> Unit)?=null
 
     private lateinit var adapter:ExperienceCallFBAdapter
     private lateinit var locationRVAdapter: LocationFlexBoxAdapter
@@ -50,17 +62,7 @@ class PreferenceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         binding.apply {
-
-/*            yesButton.setOnClickListener {
-                flag=!flag
-                if(flag){
-                    noBlueTickButton.visibility=View.INVISIBLE
-                }else
-                    noButton.visibility=View.VISIBLE
-
-            }*/
 
             val layoutManager = FlexboxLayoutManager(requireContext())
             layoutManager.flexWrap = FlexWrap.WRAP
@@ -73,46 +75,78 @@ class PreferenceFragment : Fragment() {
             experienceWorkRV.adapter= adapter
 
 
-            val layoutManager2 = FlexboxLayoutManager(requireContext())
-            layoutManager2.flexWrap = FlexWrap.WRAP
-            layoutManager2.flexDirection = FlexDirection.ROW
-            layoutManager2.justifyContent = JustifyContent.FLEX_START
-            layoutManager2.alignItems = AlignItems.FLEX_START
+            val locationLayoutManager = FlexboxLayoutManager(requireContext())
+          /*  locationLayoutManager.flexWrap = FlexWrap.WRAP
+            locationLayoutManager.flexDirection = FlexDirection.ROW
+            locationLayoutManager.alignItems = AlignItems.FLEX_START*/
 
-            locationRV.layoutManager=layoutManager2
+            locationRV.layoutManager=locationLayoutManager
             locationRVAdapter= LocationFlexBoxAdapter()
             locationRV.adapter=locationRVAdapter
 
-            noButton.setOnClickListener {
-                flag=!flag
-                if(flag){
-                   // yesUnTickButton.visibility=View.VISIBLE
-                    noBlueTickButton.visibility=View.VISIBLE
-                    yesUnTickButton.visibility=View.VISIBLE
-                }else
-                    yesUnTickButton.visibility=View.VISIBLE
+            fun changeSelectedButton(index: Int, icon: AppCompatImageView, unSelectedIcon: AppCompatImageView, background: ConstraintLayout, unSelectBackground: ConstraintLayout) {
+                when(index) {
+                    index -> {
+                        icon.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.tick))
+                        background.setBackgroundResource(R.drawable.button_border)
+                        unSelectedIcon.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.radio_border))
+                        unSelectBackground.setBackgroundResource(R.drawable.un_click_button_border)
+                    }
+                }
             }
 
 
-            yesUnTickButton.setOnClickListener {
-                flag=!flag
-                if(flag){
-                    yesUnTickButton.visibility=View.INVISIBLE
-                    yesButton.visibility=View.VISIBLE
-                    noButton.visibility=View.VISIBLE
-                }else
-                    yesUnTickButton.visibility=View.INVISIBLE
-                    noBlueTickButton.visibility=View.INVISIBLE
+            fun changeLanguageButton(index: Int, icon: AppCompatImageView, unSelectedIcon: AppCompatImageView, thirdUnSelectedIcon: AppCompatImageView,
+                                     background: ConstraintLayout, unSelectBackground: ConstraintLayout,thirdUnselectedBackground: ConstraintLayout) {
+                when(index) {
+                    index -> {
+                        icon.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.tick))
+                        background.setBackgroundResource(R.drawable.button_border)
+                        unSelectedIcon.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.radio_border))
+                        unSelectBackground.setBackgroundResource(R.drawable.un_click_button_border)
+                        thirdUnSelectedIcon.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.radio_border))
+                        thirdUnselectedBackground.setBackgroundResource(R.drawable.un_click_button_border)
+                    }
+                }
             }
-//
-//            noBlueTickButton.setOnClickListener {
-//                flag=!flag
-//                if(flag){
-//                    yesUnTickButton.visibility=View.VISIBLE
-//                    noBlueTickButton.visibility=View.VISIBLE
-//                }else
-//                    yesButton.visibility=View.INVISIBLE
-//            }
+
+            englishSubCLT.setOnClickListener {
+                count=1
+                changeLanguageButton(count, englishIconView, arabIconView,bothIconView,englishSubCLT,arabSubCLT,bothSubCLT)
+            }
+
+            arabSubCLT.setOnClickListener {
+                count=2
+                changeLanguageButton(count, arabIconView, englishIconView,bothIconView,arabSubCLT,englishSubCLT,bothSubCLT)
+            }
+
+            bothSubCLT.setOnClickListener {
+                count=3
+                changeLanguageButton(count, bothIconView, englishIconView,arabIconView,bothSubCLT,englishSubCLT,arabSubCLT)
+            }
+
+            weekdaySubCLT.setOnClickListener{
+                count=1
+                Log.e(TAG, "onViewCreated: $count" )
+                changeSelectedButton(count,weekDayIconView,weekEndIconView, weekdaySubCLT, weekEndSubCLT)
+            }
+
+            weekEndSubCLT.setOnClickListener{
+                count=2
+                changeSelectedButton(count, weekEndIconView, weekDayIconView, weekEndSubCLT, weekdaySubCLT)
+            }
+
+            yesButtonSubCLT.setOnClickListener{
+                count=1
+                Log.e(TAG, "onViewCreated: $count" )
+                changeSelectedButton(count,yesButtonIconView,noButtonIconView, yesButtonSubCLT, noButtonSubCLT)
+            }
+
+            noButtonSubCLT.setOnClickListener{
+                count=2
+                changeSelectedButton(count, noButtonIconView, yesButtonIconView, noButtonSubCLT, yesButtonSubCLT)
+            }
+
 
 
             languagePreferLT.setOnClickListener{
@@ -170,11 +204,15 @@ class PreferenceFragment : Fragment() {
 
 
             locationSubCLT.setOnClickListener{
+                locationList=preferenceLocationList()
+                toLocationCallBack?.invoke(preferenceLocationList())
+
+                Log.e("getData", "${toLocationCallBack?.invoke(locationList)}" )
                 LocationBS().apply {
                     locationCallBack={
                         locationRVAdapter.list=it.filter { it.isSelected }.toMutableList()
                         locationRVAdapter.notifyDataSetChanged()
-                    }
+                    }   
 
                     selectedList=locationRVAdapter.list.filter { it.isSelected }.map {
                         it.location
@@ -227,6 +265,15 @@ class PreferenceFragment : Fragment() {
                 endDateEL.visibility=View.INVISIBLE
             }
 
+            privacyPolicyTick.setOnClickListener{
+                flag=!flag
+
+                if (flag){
+                    privacyPolicyTick.setImageDrawable(ContextCompat.getDrawable(privacyPolicyTick.context,R.drawable.square_untick))
+                    }else
+                    privacyPolicyTick.setImageDrawable(ContextCompat.getDrawable(privacyPolicyTick.context,R.drawable.square_tick))
+            }
+
 
             createButton.setOnClickListener{
                 validation()
@@ -239,7 +286,16 @@ class PreferenceFragment : Fragment() {
         }
     }
 
-
+    private fun preferenceLocationList(): MutableList<LocationData>{
+        return arrayListOf(
+            LocationData("Armenia"),
+            LocationData("India"),
+            LocationData("Delhi"),
+            LocationData("Qatar"),
+            LocationData("Mumbai"),
+            LocationData("Punjab")
+        )
+    }
 
 
 private fun validation(){

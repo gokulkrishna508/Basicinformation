@@ -26,6 +26,7 @@ class LocationAdapter( val locationList: MutableList<LocationData>): RecyclerVie
 
             language.text=item.location
 
+
             if (item.isSelected)
                 iconSelect.setImageDrawable(ContextCompat.getDrawable(iconSelect.context, R.drawable.ic_selected))
             else

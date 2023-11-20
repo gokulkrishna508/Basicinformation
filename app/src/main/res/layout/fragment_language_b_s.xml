@@ -10,7 +10,8 @@
         android:id="@+id/headingTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginVertical="14dp"
+        android:layout_marginHorizontal="24dp"
         android:text="@string/select_the_language"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -22,7 +23,7 @@
         android:id="@+id/languageRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

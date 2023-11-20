@@ -172,110 +172,127 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line2" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/englishButton"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/languageButtonSelectCLT"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/button_border"
-            android:drawableStart="@drawable/tick"
-            android:padding="4dp"
-            android:text="@string/english"
-            android:textAllCaps="false"
-            android:textColor="@color/text_blue"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/languagePreferTV" />
+            app:layout_constraintTop_toBottomOf="@+id/languagePreferTV">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/englishUnTickButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/button_border"
-            android:drawableStart="@drawable/radio_border"
-            android:padding="4dp"
-            android:text="@string/english"
-            android:textAllCaps="false"
-            android:textColor="@color/text_blue"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/languagePreferTV" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/englishSubCLT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/un_click_button_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/arabButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/button_border"
-            android:drawableStart="@drawable/radio_border"
-            android:padding="4dp"
-            android:text="@string/arab"
-            android:textAllCaps="false"
-            android:textColor="@color/text_blue"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/englishButton"
-            app:layout_constraintStart_toEndOf="@+id/englishButton"
-            app:layout_constraintTop_toTopOf="@+id/englishButton" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/englishIconView"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/radio_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/englishTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/arabBlueTickButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/button_border"
-            android:drawableStart="@drawable/tick"
-            android:padding="4dp"
-            android:text="@string/arab"
-            android:textAllCaps="false"
-            android:textColor="@color/text_blue"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/englishButton"
-            app:layout_constraintStart_toEndOf="@+id/englishButton"
-            app:layout_constraintTop_toTopOf="@+id/englishButton" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/englishTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/english"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bothButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/button_border"
-            android:drawableStart="@drawable/radio_border"
-            android:padding="4dp"
-            android:text="@string/both"
-            android:textAllCaps="false"
-            android:textColor="@color/text_blue"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/arabButton"
-            app:layout_constraintStart_toEndOf="@+id/arabButton"
-            app:layout_constraintTop_toTopOf="@+id/arabButton" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bothBlueTickButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/button_border"
-            android:drawableStart="@drawable/tick"
-            android:padding="4dp"
-            android:text="@string/both"
-            android:textAllCaps="false"
-            android:textColor="@color/text_blue"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/arabButton"
-            app:layout_constraintStart_toEndOf="@+id/arabButton"
-            app:layout_constraintTop_toTopOf="@+id/arabButton" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/arabSubCLT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/un_click_button_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/englishSubCLT"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/arabIconView"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/radio_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/arabTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/arabTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/arab"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bothSubCLT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/un_click_button_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/arabSubCLT"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/bothIconView"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/radio_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/bothTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/bothTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/both"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/firstNameCLT"
@@ -284,7 +301,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/englishButton">
+            app:layout_constraintTop_toBottomOf="@+id/languageButtonSelectCLT">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/firstNameTV"

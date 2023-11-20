@@ -9,7 +9,7 @@
     <string name="fill_required_tv">Please fill in the required details</string>
     <string name="language_prefer">What language do you prefer?</string>
     <string name="english">English</string>
-    <string name="arab">Arab</string>
+    <string name="arab">Arabic</string>
     <string name="both">Both</string>
     <string name="first_name_tv">First Name <font color='#8E1537'>*</font></string>
     <string name="last_name_tv">last Name <font color='#8E1537'>*</font></string>
