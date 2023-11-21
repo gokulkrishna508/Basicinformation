@@ -48,7 +48,7 @@ class PreferenceFragment : Fragment() {
     private val currentMonth: Int = now.get(Calendar.MONTH)
     private val currentDay: Int = now.get(Calendar.DAY_OF_MONTH)
     var locationList= mutableListOf<LocationData>()
-    var toLocationCallBack: ((list: MutableList<LocationData>)-> Unit)?=null
+    var toLocationCallBack: ((MutableList<LocationData>)-> Unit)?=null
 
     private lateinit var adapter:ExperienceCallFBAdapter
     private lateinit var locationRVAdapter: LocationFlexBoxAdapter
@@ -74,15 +74,6 @@ class PreferenceFragment : Fragment() {
             adapter = ExperienceCallFBAdapter()
             experienceWorkRV.adapter= adapter
 
-
-            val locationLayoutManager = FlexboxLayoutManager(requireContext())
-          /*  locationLayoutManager.flexWrap = FlexWrap.WRAP
-            locationLayoutManager.flexDirection = FlexDirection.ROW
-            locationLayoutManager.alignItems = AlignItems.FLEX_START*/
-
-            locationRV.layoutManager=locationLayoutManager
-            locationRVAdapter= LocationFlexBoxAdapter()
-            locationRV.adapter=locationRVAdapter
 
             fun changeSelectedButton(index: Int, icon: AppCompatImageView, unSelectedIcon: AppCompatImageView, background: ConstraintLayout, unSelectBackground: ConstraintLayout) {
                 when(index) {
@@ -201,24 +192,55 @@ class PreferenceFragment : Fragment() {
                 }.show(childFragmentManager,"EMPLOYER")
             }
 
+            val locationLayoutManager = FlexboxLayoutManager(requireContext())
+            locationRV.layoutManager=locationLayoutManager
+            locationRVAdapter= LocationFlexBoxAdapter()
+            locationRV.adapter=locationRVAdapter
+
+
+
 
 
             locationSubCLT.setOnClickListener{
-                locationList=preferenceLocationList()
-                toLocationCallBack?.invoke(preferenceLocationList())
+//               locationList=locationRVAdapter.list
 
-                Log.e("getData", "${toLocationCallBack?.invoke(locationList)}" )
-                LocationBS().apply {
+                if (locationList.isEmpty()){
+                    locationList = preferenceLocationList()
+                    }
+                    LocationBS().apply {
+                        /*list=locationList
                     locationCallBack={
+                        // get the list and compare it with main list here and update the main list
+                        locationList=it
                         locationRVAdapter.list=it.filter { it.isSelected }.toMutableList()
                         locationRVAdapter.notifyDataSetChanged()
-                    }   
+                    }
 
                     selectedList=locationRVAdapter.list.filter { it.isSelected }.map {
                         it.location
-                    }.toMutableList()
-                }.show(childFragmentManager,"LOCATION")
+                    }.toMutableList()*/
+                        list = locationList
+                        locationCallBack = {
+                            locationList = it
+                            locationRVAdapter.apply {
+                                list = it.filter { it.isSelected }.toMutableList()
+                                notifyDataSetChanged()
+                            }
+                        }
+
+
+//                        selectedList=locationRVAdapter.list.filter { it.isSelected }.map {
+//                        it.location
+//                    }.toMutableList()
+
+                        Log.e("@@filter", locationList.toString())
+
+                    }.show(childFragmentManager, "LOCATION")
+
             }
+
+
+
 
             experienceInWorkSubCLT.setOnClickListener{
                 SkillExperienceBS().apply {
@@ -229,12 +251,12 @@ class PreferenceFragment : Fragment() {
                     skills = adapter.list.filter { it.isSelected }.map {
                         it.qualities
                     }.toMutableList()
-                    Log.e("skills","<<< $skills")
+
                 }.show(childFragmentManager,"SKILL")
             }
 
             languagePreferBoxTV.doOnTextChanged { _, _, _, _ ->
-                languagePreferEL.visibility=View.INVISIBLE
+                                   languagePreferEL.visibility=View.INVISIBLE
             }
 
             academicWorkTV.doOnTextChanged { _, _, _, _ ->

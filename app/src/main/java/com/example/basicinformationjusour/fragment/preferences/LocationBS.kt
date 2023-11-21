@@ -1,5 +1,6 @@
 package com.example.basicinformationjusour.fragment.preferences
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +19,8 @@ class LocationBS : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentLocationBSBinding
     private lateinit var adapter: LocationAdapter
     var locationCallBack: ((list: MutableList<LocationData>)-> Unit)?=null
-    var selectedList= mutableListOf<String>()
+//    var selectedList= mutableListOf<String>()
+    var list= mutableListOf<LocationData>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding= FragmentLocationBSBinding.inflate(layoutInflater)
@@ -30,23 +32,27 @@ class LocationBS : BottomSheetDialogFragment() {
         locationRV()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun locationRV(){
         binding.apply {
-            PreferenceFragment().apply {
-                toLocationCallBack = {
+          /*  PreferenceFragment().apply {
+                toLocationCallBack = {it ->
+                    locationList = it
                     //val list = it
-                    Log.e("getDatas", "$it" )
-                    adapter = LocationAdapter(it)
-                    locationRV.adapter = adapter
                 }
+            }*/
+            adapter = LocationAdapter(list)
+            locationRV.adapter = adapter
+            adapter.onClick={
+                list[it].isSelected=! list[it].isSelected
+                adapter.notifyDataSetChanged()
             }
+            adapter.notifyDataSetChanged()
 
 //                list.map { it.isSelected = selectedList.contains(it.location) }
 
-
-
                 locationSubmit.click {
-                    locationCallBack?.invoke(adapter.locationList)
+                    locationCallBack?.invoke(list)
                     dismiss()
             }
         }

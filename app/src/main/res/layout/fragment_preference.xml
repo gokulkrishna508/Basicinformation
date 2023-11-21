@@ -177,11 +177,22 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/requiredTV" />
 
+                <HorizontalScrollView
+                    android:id="@+id/horizontalScroll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/languagePreferTV">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/languageButtonSelectCLT"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/languagePreferTV">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontalScroll">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/englishSubCLT"
@@ -190,6 +201,8 @@
                         android:layout_margin="8dp"
                         android:background="@drawable/un_click_button_border"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/arabSubCLT"
+                        app:layout_constraintHorizontal_chainStyle="spread"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -216,6 +229,8 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/englishIconView"
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -225,6 +240,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/bothSubCLT"
                         android:background="@drawable/un_click_button_border"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/englishSubCLT"
@@ -253,6 +269,8 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/arabIconView"
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -264,6 +282,7 @@
                         android:layout_margin="8dp"
                         android:background="@drawable/un_click_button_border"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/arabSubCLT"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -296,6 +315,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                </HorizontalScrollView>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/languagePreferCLT"
@@ -304,7 +324,7 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/languageButtonSelectCLT">
+                    app:layout_constraintTop_toBottomOf="@+id/horizontalScroll">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/languagePreferView"
