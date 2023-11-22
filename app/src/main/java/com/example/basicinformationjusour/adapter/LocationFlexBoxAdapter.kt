@@ -1,11 +1,9 @@
 package com.example.basicinformationjusour.adapter
 
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.basicinformationjusour.R
 import com.example.basicinformationjusour.databinding.CellLocationLayoutRvBinding
 import com.example.basicinformationjusour.model.LocationData
 
@@ -55,7 +53,6 @@ class LocationFlexBoxAdapter : RecyclerView.Adapter<LocationFlexBoxAdapter.ViewH
                         list.removeAt(bindingAdapterPosition)
                         notifyItemRemoved(bindingAdapterPosition)
                         notifyItemRangeChanged(bindingAdapterPosition,itemCount)
-
                     }catch (e: Exception) {
                         e.printStackTrace()
                     }

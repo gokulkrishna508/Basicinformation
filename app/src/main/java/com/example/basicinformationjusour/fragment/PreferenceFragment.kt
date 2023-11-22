@@ -3,7 +3,7 @@ package com.example.basicinformationjusour.fragment
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.support.v4.os.IResultReceiver._Parcel
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
+
 import androidx.navigation.fragment.findNavController
 import com.example.basicinformationjusour.R
 import com.example.basicinformationjusour.adapter.ExperienceCallFBAdapter
@@ -29,6 +29,7 @@ import com.example.basicinformationjusour.fragment.preferences.LocationBS
 import com.example.basicinformationjusour.fragment.preferences.PreferredSectorEmployedBS
 import com.example.basicinformationjusour.fragment.preferences.SkillExperienceBS
 import com.example.basicinformationjusour.model.LocationData
+import com.example.basicinformationjusour.model.SkillExperienceData
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -41,14 +42,19 @@ const val TAG = "PreferenceFragment"
 class PreferenceFragment : Fragment() {
     private lateinit var binding: FragmentPreferenceBinding
     private var isValid=true
-    var flag= false
-    var count=1
+    private var languageFlag=false
+    private var weekFlag=false
+    private var flag= false
+    private var count=1
     private val now = Calendar.getInstance()
     private val currentYear: Int = now.get(Calendar.YEAR)
     private val currentMonth: Int = now.get(Calendar.MONTH)
     private val currentDay: Int = now.get(Calendar.DAY_OF_MONTH)
+
+    var skillList= mutableListOf<SkillExperienceData>()
     var locationList= mutableListOf<LocationData>()
-    var toLocationCallBack: ((MutableList<LocationData>)-> Unit)?=null
+    var toExperienceCallBack: ((MutableList<SkillExperienceData>)-> Unit) ? = null
+    var toLocationCallBack: ((MutableList<LocationData>)-> Unit) ?=null
 
     private lateinit var adapter:ExperienceCallFBAdapter
     private lateinit var locationRVAdapter: LocationFlexBoxAdapter
@@ -75,18 +81,6 @@ class PreferenceFragment : Fragment() {
             experienceWorkRV.adapter= adapter
 
 
-            fun changeSelectedButton(index: Int, icon: AppCompatImageView, unSelectedIcon: AppCompatImageView, background: ConstraintLayout, unSelectBackground: ConstraintLayout) {
-                when(index) {
-                    index -> {
-                        icon.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.tick))
-                        background.setBackgroundResource(R.drawable.button_border)
-                        unSelectedIcon.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.radio_border))
-                        unSelectBackground.setBackgroundResource(R.drawable.un_click_button_border)
-                    }
-                }
-            }
-
-
             fun changeLanguageButton(index: Int, icon: AppCompatImageView, unSelectedIcon: AppCompatImageView, thirdUnSelectedIcon: AppCompatImageView,
                                      background: ConstraintLayout, unSelectBackground: ConstraintLayout,thirdUnselectedBackground: ConstraintLayout) {
                 when(index) {
@@ -103,40 +97,54 @@ class PreferenceFragment : Fragment() {
 
             englishSubCLT.setOnClickListener {
                 count=1
+                languageEL.visibility=View.INVISIBLE
                 changeLanguageButton(count, englishIconView, arabIconView,bothIconView,englishSubCLT,arabSubCLT,bothSubCLT)
+                languageFlag=true
             }
 
             arabSubCLT.setOnClickListener {
                 count=2
+                languageEL.visibility=View.INVISIBLE
                 changeLanguageButton(count, arabIconView, englishIconView,bothIconView,arabSubCLT,englishSubCLT,bothSubCLT)
+                languageFlag=true
             }
 
             bothSubCLT.setOnClickListener {
                 count=3
+                languageEL.visibility=View.INVISIBLE
                 changeLanguageButton(count, bothIconView, englishIconView,arabIconView,bothSubCLT,englishSubCLT,arabSubCLT)
+                languageFlag=true
             }
 
             weekdaySubCLT.setOnClickListener{
                 count=1
-                Log.e(TAG, "onViewCreated: $count" )
+                weekWorkEL.visibility=View.INVISIBLE
                 changeSelectedButton(count,weekDayIconView,weekEndIconView, weekdaySubCLT, weekEndSubCLT)
+                weekFlag=true
             }
 
             weekEndSubCLT.setOnClickListener{
                 count=2
+                weekWorkEL.visibility=View.INVISIBLE
                 changeSelectedButton(count, weekEndIconView, weekDayIconView, weekEndSubCLT, weekdaySubCLT)
+                weekFlag=true
             }
 
             yesButtonSubCLT.setOnClickListener{
                 count=1
-                Log.e(TAG, "onViewCreated: $count" )
+                yesNoButtonEL.visibility=View.INVISIBLE
                 changeSelectedButton(count,yesButtonIconView,noButtonIconView, yesButtonSubCLT, noButtonSubCLT)
+                flag=true
             }
 
             noButtonSubCLT.setOnClickListener{
                 count=2
+                yesNoButtonEL.visibility=View.INVISIBLE
                 changeSelectedButton(count, noButtonIconView, yesButtonIconView, noButtonSubCLT, yesButtonSubCLT)
+                flag=true
             }
+
+
 
 
 
@@ -148,15 +156,15 @@ class PreferenceFragment : Fragment() {
                 }.show(childFragmentManager,"LANGUAGE")
             }
 
-            dobTV.setOnClickListener{
+            dobSubCLT.setOnClickListener{
                 dobPicker()
             }
 
-            startDateTV.setOnClickListener{
+            startDateSubCLT.setOnClickListener{
                 startDate()
             }
 
-            endDateTV.setOnClickListener{
+            endDateSubCLT.setOnClickListener{
                 endDate()
             }
 
@@ -201,50 +209,69 @@ class PreferenceFragment : Fragment() {
 
 
 
-            locationSubCLT.setOnClickListener{
-//               locationList=locationRVAdapter.list
+            locationSubCLT.setOnClickListener {
 
-                if (locationList.isEmpty()){
-                    locationList = preferenceLocationList()
-                    }
-                    LocationBS().apply {
-                        /*list=locationList
-                    locationCallBack={
-                        // get the list and compare it with main list here and update the main list
-                        locationList=it
-                        locationRVAdapter.list=it.filter { it.isSelected }.toMutableList()
-                        locationRVAdapter.notifyDataSetChanged()
-                    }
+                locationList = preferenceLocationList()
+                val selectedList = locationRVAdapter.list.map { it.location }
+                locationList.map { it.isSelected  = selectedList.contains(it.location) }
 
-                    selectedList=locationRVAdapter.list.filter { it.isSelected }.map {
-                        it.location
-                    }.toMutableList()*/
+                Log.e("getLocation", locationRVAdapter.list.map { it.location }.size.toString() )
+
+              LocationBS().apply {
                         list = locationList
                         locationCallBack = {
                             locationList = it
                             locationRVAdapter.apply {
-                                list = it.filter { it.isSelected }.toMutableList()
+                                list = it.map { it.copy() }.filter { it.isSelected }.toMutableList()
                                 notifyDataSetChanged()
+
+                                if(locationRVAdapter.list.map { it.location }.isNotEmpty()){
+                                    locationEL.visibility=View.INVISIBLE
+                                    isValid=true
+                                }
+                                toLocationCallBack?.invoke(list)
                             }
                         }
-
-
-//                        selectedList=locationRVAdapter.list.filter { it.isSelected }.map {
-//                        it.location
-//                    }.toMutableList()
-
-                        Log.e("@@filter", locationList.toString())
-
                     }.show(childFragmentManager, "LOCATION")
 
+                if(locationRVAdapter.list.map { it.location }.isEmpty()){
+                    locationEL.visibility=View.VISIBLE
+                    isValid=false
+                }
             }
 
 
 
 
             experienceInWorkSubCLT.setOnClickListener{
+
+                skillList=preferenceSkillsList()
+                val selectedSkillList=  adapter.list.map { it.qualities }
+                skillList.map { it.isSelected= selectedSkillList.contains(it.qualities) }
+
                 SkillExperienceBS().apply {
+                    skills=skillList
+
                     skillsCallBack = {
+                        skillList=it
+
+                        adapter.apply {
+                            skills = it.map { it.copy() }.filter { it.isSelected }.toMutableList()
+                            notifyDataSetChanged()
+
+                            if (adapter.list.map { it.qualities }.isEmpty()){
+                                toast("Update el")
+                            }
+                            toExperienceCallBack?.invoke(skills)
+
+                        }
+
+
+
+
+
+
+
                         adapter.list = it.filter { it.isSelected }.toMutableList()
                         adapter.notifyDataSetChanged()
                     }
@@ -256,7 +283,7 @@ class PreferenceFragment : Fragment() {
             }
 
             languagePreferBoxTV.doOnTextChanged { _, _, _, _ ->
-                                   languagePreferEL.visibility=View.INVISIBLE
+                languagePreferEL.visibility=View.INVISIBLE
             }
 
             academicWorkTV.doOnTextChanged { _, _, _, _ ->
@@ -319,11 +346,45 @@ class PreferenceFragment : Fragment() {
         )
     }
 
+    private fun preferenceSkillsList(): MutableList<SkillExperienceData>{
+        return arrayListOf(
+            SkillExperienceData("Analytical Skills"),
+            SkillExperienceData("Communication"),
+            SkillExperienceData("Innovation"),
+            SkillExperienceData("LeaderShip"),
+            SkillExperienceData("TeamWork")
+        )
+    }
 
-private fun validation(){
+    private fun changeSelectedButton(index: Int, icon: AppCompatImageView, unSelectedIcon: AppCompatImageView, background: ConstraintLayout, unSelectBackground: ConstraintLayout) {
+        when(index) {
+            index -> {
+                icon.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.tick) })
+                background.setBackgroundResource(R.drawable.button_border)
+                unSelectedIcon.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.radio_border) })
+                unSelectBackground.setBackgroundResource(R.drawable.un_click_button_border)
+            }
+        }
+    }
+
+
+
+    private fun validation(){
     isValid=true
-
     binding.apply {
+
+        if (!flag) {
+            yesNoButtonEL.visibility = View.VISIBLE
+        }
+
+        if (!languageFlag){
+           languageEL.visibility=View.VISIBLE
+        }
+
+        if (!weekFlag){
+            weekWorkEL.visibility=View.VISIBLE
+        }
+
         if (languagePreferBoxTV.text.toString().trim().isEmpty()){
             languagePreferEL.visibility=View.VISIBLE
             isValid=false
@@ -354,7 +415,12 @@ private fun validation(){
             isValid=false
         }
 
-        if (startDateTV.text.toString().trim().isEmpty()){
+        if (locationRVAdapter.list.map { it.location }.isEmpty()){
+            locationEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+         if (startDateTV.text.toString().trim().isEmpty()){
             startDateEL.visibility=View.VISIBLE
             isValid=false
         }
@@ -409,3 +475,15 @@ private fun validation(){
     }
 
 }
+
+
+/*SkillExperienceBS().apply {
+                    skillsCallBack = {
+                        adapter.list = it.filter { it.isSelected }.toMutableList()
+                        adapter.notifyDataSetChanged()
+                    }
+                    skills = adapter.list.filter { it.isSelected }.map {
+                        it.qualities
+                    }.toMutableList()
+
+                }.show(childFragmentManager,"SKILL")*/

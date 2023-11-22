@@ -260,15 +260,15 @@ class BasicInfo : Fragment() {
                 resumeEL.visibility=View.INVISIBLE
             }
 
-            dobTV.setOnClickListener(){
+            dobLT.setOnClickListener(){
                 dobPicker()
             }
 
-            universityStartTV.setOnClickListener(){
+            universityStartLT.setOnClickListener(){
                 universityStartDate()
             }
 
-            universityTV.setOnClickListener(){
+            universityLT.setOnClickListener(){
                 UniversityBottomSheet().apply {
                     universityNameCallBack={
                         universityTV.text=it.university
@@ -276,7 +276,7 @@ class BasicInfo : Fragment() {
                 }.show(childFragmentManager,"UNIVERSITY")
             }
 
-            universityMajorTV.setOnClickListener()
+            universityMajorLT.setOnClickListener()
             {
                 UniversityMajorBS().apply {
                     universitySubjectCallback={
@@ -308,19 +308,19 @@ class BasicInfo : Fragment() {
 
 
 
-            nocLetterTV.setOnClickListener(){
+            nocLetterLT.setOnClickListener(){
                 setUpViews()
             }
 
-            enrollmentLetterTV.setOnClickListener(){
+            enrollmentLetterLT.setOnClickListener(){
                 setUpEnrollmentViews()
             }
 
-            expectedGraduationTV.setOnClickListener(){
+            expectedGraduationLT.setOnClickListener(){
                 expectedGraduationDate()
             }
 
-            resumeTV.setOnClickListener(){
+            resumeLT.setOnClickListener(){
                 setUpResumeViews()
             }
 

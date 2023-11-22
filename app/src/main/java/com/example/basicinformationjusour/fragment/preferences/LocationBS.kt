@@ -41,13 +41,13 @@ class LocationBS : BottomSheetDialogFragment() {
                     //val list = it
                 }
             }*/
+
             adapter = LocationAdapter(list)
             locationRV.adapter = adapter
             adapter.onClick={
                 list[it].isSelected=! list[it].isSelected
                 adapter.notifyDataSetChanged()
             }
-            adapter.notifyDataSetChanged()
 
 //                list.map { it.isSelected = selectedList.contains(it.location) }
 

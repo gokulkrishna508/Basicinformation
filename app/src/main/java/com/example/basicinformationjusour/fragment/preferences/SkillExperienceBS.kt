@@ -1,5 +1,6 @@
 package com.example.basicinformationjusour.fragment.preferences
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,7 +18,7 @@ class SkillExperienceBS : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentSkillExperienceBSBinding
     private lateinit var adapter:SkillExperienceAdapter
     var skillsCallBack: ((list:MutableList<SkillExperienceData>)-> Unit)?= null
-    var skills = mutableListOf<String>()
+    var skills = mutableListOf<SkillExperienceData>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding=FragmentSkillExperienceBSBinding.inflate(layoutInflater)
@@ -29,13 +30,16 @@ class SkillExperienceBS : BottomSheetDialogFragment() {
         skillsExperienceRV()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun skillsExperienceRV(){
         binding.apply {
-            val list = skillsList()
-            list.map { it.isSelected = skills.contains(it.qualities) }
+            adapter= SkillExperienceAdapter(skills)
+            skillExperienceRV.adapter=adapter
 
-            adapter = SkillExperienceAdapter(list)
-            skillExperienceRV.adapter = adapter
+            adapter.onclick={
+                skills[it].isSelected = !skills[it].isSelected
+                adapter.notifyDataSetChanged()
+            }
 
             skillSubmit.click {
                 skillsCallBack?.invoke(adapter.skillExperienceList)
@@ -44,7 +48,7 @@ class SkillExperienceBS : BottomSheetDialogFragment() {
         }
     }
 
-    private fun skillsList(): MutableList<SkillExperienceData>{
+   /* private fun skillsList(): MutableList<SkillExperienceData>{
         return arrayListOf(
             SkillExperienceData("Analytical Skills"),
             SkillExperienceData("Communication"),
@@ -52,5 +56,5 @@ class SkillExperienceBS : BottomSheetDialogFragment() {
             SkillExperienceData("LeaderShip"),
             SkillExperienceData("TeamWork")
         )
-    }
+    }*/
 }
