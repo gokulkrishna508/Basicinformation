@@ -560,25 +560,9 @@ class BasicInfo : Fragment() {
         calendarFragment?.show()
     }
 
-    private fun setUpViews() {
-        binding.apply {
-            nocLetterTV.setOnClickListener {
-                galleryPermission.launch(
-                    if (Build.VERSION.SDK_INT >= 33) {
-                        arrayOf(
-                            Manifest.permission.READ_EXTERNAL_STORAGE
-                        )
-                    } else {
-                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    }
-                )
-            }
-        }
-    }
-
     private fun setUpEnrollmentViews() {
         binding.apply {
-            enrollmentLetterTV.setOnClickListener {
+            enrollmentLetterLT.setOnClickListener {
                 enrollmentPdfPermission.launch(
                     if (Build.VERSION.SDK_INT >= 33) {
                         arrayOf(
@@ -594,7 +578,7 @@ class BasicInfo : Fragment() {
 
     private fun setUpResumeViews() {
         binding.apply {
-            resumeTV.setOnClickListener {
+            resumeLT.setOnClickListener {
                 resumePdfPermission.launch(
                     if (Build.VERSION.SDK_INT >= 33) {
                         arrayOf(
