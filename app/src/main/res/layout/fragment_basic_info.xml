@@ -302,6 +302,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/languageEL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:text="@string/this_field_is_required"
+                android:textColor="@color/error_red"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/englishSubCLT" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         </HorizontalScrollView>
@@ -758,20 +769,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nocLetterView" >
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/nocLetterTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:padding="2dp"
-                    android:drawableStart="@drawable/pin"
-                    android:hint="@string/upload_file"
-                    android:textColor="@color/text_gray"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clNoc"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toStartOf="@+id/nocLetterButton"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nocLetterTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:padding="2dp"
+                        android:drawableStart="@drawable/pin"
+                        android:hint="@string/upload_file"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/nocLetterButton"
@@ -1147,17 +1169,6 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/square_tick"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/privacyPolicyUnTick"
-                android:visibility="invisible"
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/square_untick"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

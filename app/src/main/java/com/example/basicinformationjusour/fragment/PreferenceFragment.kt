@@ -44,6 +44,7 @@ class PreferenceFragment : Fragment() {
     private var isValid=true
     private var languageFlag=false
     private var weekFlag=false
+    private var policyFlag=false
     private var flag= false
     private var count=1
     private val now = Calendar.getInstance()
@@ -53,6 +54,7 @@ class PreferenceFragment : Fragment() {
 
     var skillList= mutableListOf<SkillExperienceData>()
     var locationList= mutableListOf<LocationData>()
+
     var toExperienceCallBack: ((MutableList<SkillExperienceData>)-> Unit) ? = null
     var toLocationCallBack: ((MutableList<LocationData>)-> Unit) ?=null
 
@@ -243,44 +245,46 @@ class PreferenceFragment : Fragment() {
 
 
 
-            experienceInWorkSubCLT.setOnClickListener{
+            experienceInWorkSubCLT.setOnClickListener {
 
-                skillList=preferenceSkillsList()
-                val selectedSkillList=  adapter.list.map { it.qualities }
-                skillList.map { it.isSelected= selectedSkillList.contains(it.qualities) }
+                skillList = preferenceSkillsList()
+                val selectedSkillList = adapter.list.map { it.qualities }
+                skillList.map { it.isSelected = selectedSkillList.contains(it.qualities) }
+
+                Log.e("getskill", adapter.list.map { it.qualities }.size.toString() )
 
                 SkillExperienceBS().apply {
-                    skills=skillList
-
+                    skills = skillList
                     skillsCallBack = {
-                        skillList=it
+                        skillList = it
 
                         adapter.apply {
-                            skills = it.map { it.copy() }.filter { it.isSelected }.toMutableList()
+                            list = it.map { it.copy() }.filter { it.isSelected }.toMutableList()
                             notifyDataSetChanged()
 
-                            if (adapter.list.map { it.qualities }.isEmpty()){
-                                toast("Update el")
+                            if (adapter.list.map { it.qualities }.isNotEmpty()) {
+                                experienceInWorkEL.visibility=View.INVISIBLE
+                                isValid=true
                             }
-                            toExperienceCallBack?.invoke(skills)
+
+                            toExperienceCallBack?.invoke(list)
 
                         }
-
-
-
-
-
-
-
-                        adapter.list = it.filter { it.isSelected }.toMutableList()
-                        adapter.notifyDataSetChanged()
                     }
-                    skills = adapter.list.filter { it.isSelected }.map {
-                        it.qualities
-                    }.toMutableList()
+                }.show(childFragmentManager, "SKILL")
 
-                }.show(childFragmentManager,"SKILL")
+                if(adapter.list.map { it.qualities }.isEmpty()){
+                    experienceInWorkEL.visibility=View.VISIBLE
+                    isValid=false
+                }
+
             }
+
+
+
+
+
+
 
             languagePreferBoxTV.doOnTextChanged { _, _, _, _ ->
                 languagePreferEL.visibility=View.INVISIBLE
@@ -315,9 +319,8 @@ class PreferenceFragment : Fragment() {
             }
 
             privacyPolicyTick.setOnClickListener{
-                flag=!flag
-
-                if (flag){
+                policyFlag=!policyFlag
+                if (policyFlag){
                     privacyPolicyTick.setImageDrawable(ContextCompat.getDrawable(privacyPolicyTick.context,R.drawable.square_untick))
                     }else
                     privacyPolicyTick.setImageDrawable(ContextCompat.getDrawable(privacyPolicyTick.context,R.drawable.square_tick))
@@ -326,10 +329,14 @@ class PreferenceFragment : Fragment() {
 
             createButton.setOnClickListener{
                 validation()
-                if (isValid){
+                if (isValid && !policyFlag){
                     Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_preference_to_startExploringFragment)
-                }else
+                }
+                if (policyFlag){
+                    toast("Agree the Terms and Conditions!!!")
+                }
+                else
                     Toast.makeText(context, "UnSuccessful", Toast.LENGTH_SHORT).show()
             }
         }
@@ -417,6 +424,11 @@ class PreferenceFragment : Fragment() {
 
         if (locationRVAdapter.list.map { it.location }.isEmpty()){
             locationEL.visibility=View.VISIBLE
+            isValid=false
+        }
+
+        if (adapter.list.map { it.qualities }.isEmpty()){
+            experienceInWorkEL.visibility=View.VISIBLE
             isValid=false
         }
 

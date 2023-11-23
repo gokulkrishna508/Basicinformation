@@ -39,7 +39,9 @@ private val DOCUMENT_TYPE_MIME_TO_EXTENSION_MAP = mapOf(
 class BasicInfo : Fragment() {
     private lateinit var binding: FragmentBasicInfoBinding
     private var isValid=true
-     var count=0
+    private var count=0
+    private var policyFlag=false
+    private var languageFlag=false
     private val now = Calendar.getInstance()
     private val currentYear: Int = now.get(Calendar.YEAR)
     private val currentMonth: Int = now.get(Calendar.MONTH)
@@ -172,18 +174,13 @@ class BasicInfo : Fragment() {
 
         binding.apply {
 
-
-
-            privacyPolicyTick.setOnClickListener(){
-                privacyPolicyUnTick.visibility=View.VISIBLE
-                privacyPolicyTick.visibility=View.INVISIBLE
+            privacyPolicyTick.setOnClickListener{
+                policyFlag=!policyFlag
+                if (policyFlag){
+                    privacyPolicyTick.setImageDrawable(ContextCompat.getDrawable(privacyPolicyTick.context,R.drawable.square_untick))
+                }else
+                    privacyPolicyTick.setImageDrawable(ContextCompat.getDrawable(privacyPolicyTick.context,R.drawable.square_tick))
             }
-
-            privacyPolicyUnTick.setOnClickListener(){
-                privacyPolicyTick.visibility=View.VISIBLE
-                privacyPolicyUnTick.visibility=View.INVISIBLE
-            }
-
 
             firstNameEditText.doOnTextChanged { _, _, _, _ ->
                 firstNameTextErrorListener.text= resources.getString(R.string.this_field_is_required)
@@ -260,15 +257,15 @@ class BasicInfo : Fragment() {
                 resumeEL.visibility=View.INVISIBLE
             }
 
-            dobLT.setOnClickListener(){
+            dobLT.setOnClickListener {
                 dobPicker()
             }
 
-            universityStartLT.setOnClickListener(){
+            universityStartLT.setOnClickListener {
                 universityStartDate()
             }
 
-            universityLT.setOnClickListener(){
+            universityLT.setOnClickListener {
                 UniversityBottomSheet().apply {
                     universityNameCallBack={
                         universityTV.text=it.university
@@ -309,7 +306,16 @@ class BasicInfo : Fragment() {
 
 
             nocLetterLT.setOnClickListener(){
-                setUpViews()
+               // setUpViews()
+                galleryPermission.launch(
+                    if (Build.VERSION.SDK_INT >= 33) {
+                        arrayOf(
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                    } else {
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
+                )
             }
 
             enrollmentLetterLT.setOnClickListener(){
@@ -335,17 +341,23 @@ class BasicInfo : Fragment() {
 
             englishSubCLT.setOnClickListener {
                 count=1
+                languageEL.visibility=View.INVISIBLE
                 changeLanguageButton(count, englishIconView, arabIconView,bothIconView,englishSubCLT,arabSubCLT,bothSubCLT)
+                languageFlag=true
             }
 
             arabSubCLT.setOnClickListener {
                 count=2
+                languageEL.visibility=View.INVISIBLE
                 changeLanguageButton(count, arabIconView, englishIconView,bothIconView,arabSubCLT,englishSubCLT,bothSubCLT)
+                languageFlag=true
             }
 
             bothSubCLT.setOnClickListener {
                 count=3
+                languageEL.visibility=View.INVISIBLE
                 changeLanguageButton(count, bothIconView, englishIconView,arabIconView,bothSubCLT,englishSubCLT,arabSubCLT)
+                languageFlag=true
             }
 
 
@@ -353,10 +365,14 @@ class BasicInfo : Fragment() {
 
             continueButton.setOnClickListener(){
                 validation()
-                if (isValid){
+                if (isValid && !policyFlag){
                     Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_basicInfo_to_approval)
-                }else
+                }
+                if (policyFlag){
+                    toast("Agree the Terms and Conditions!!!")
+                }
+                else
                     Toast.makeText(context, "UnSuccessful", Toast.LENGTH_SHORT).show()
             }
 
@@ -381,6 +397,11 @@ class BasicInfo : Fragment() {
     private fun validation(){
         isValid=true
         binding.apply {
+
+            if(!languageFlag){
+                languageEL.visibility=View.VISIBLE
+            }
+
             if (firstNameEditText.text.toString().trim().isEmpty()){
                 firstNameTextErrorListener.visibility=View.VISIBLE
                 isValid=false

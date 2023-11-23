@@ -42,7 +42,7 @@ class SkillExperienceBS : BottomSheetDialogFragment() {
             }
 
             skillSubmit.click {
-                skillsCallBack?.invoke(adapter.skillExperienceList)
+                skillsCallBack?.invoke(skills)
                 dismiss()
             }
         }

@@ -41,13 +41,13 @@ class SkillExperienceAdapter(val skillExperienceList: MutableList<SkillExperienc
                     imgSelection.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.ic_un_selected))
 
                 root.click {
-                    if(item.isSelected){
+                   /* if(item.isSelected){
                         item.isSelected = false
                         notifyItemChanged(bindingAdapterPosition)
                     }else{
                         item.isSelected = true
                         notifyItemChanged(bindingAdapterPosition)
-                    }
+                    }*/
 
                     onclick?.invoke(bindingAdapterPosition)
 

@@ -10,7 +10,6 @@ import com.example.basicinformationjusour.model.LocationData
 class LocationFlexBoxAdapter : RecyclerView.Adapter<LocationFlexBoxAdapter.ViewHolder>() {
 
     var list= mutableListOf<LocationData>()
-
     var onClick: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
